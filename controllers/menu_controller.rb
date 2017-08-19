@@ -11,10 +11,11 @@ require_relative '../models/address_book'
      # #2
      puts "Main Menu - #{address_book.entries.count} entries"
      puts "1 - View all entries"
-     puts "2 - Create an entry"
-     puts "3 - Search for an entry"
-     puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
+     puts "2 - View Entry Number n"
+     puts "3 - Create an entry"
+     puts "4 - Search for an entry"
+     puts "5 - Import entries from a CSV"
+     puts "6 - Exit"
      print "Enter your selection: "
 
      # #3
@@ -28,17 +29,21 @@ require_relative '../models/address_book'
         main_menu
       when 2
         system "clear"
-        create_entry
+        view_specific_entry
         main_menu
       when 3
         system "clear"
-        search_entries
+        create_entry
         main_menu
       when 4
         system "clear"
-        read_csv
+        search_entries
         main_menu
       when 5
+        system "clear"
+        read_csv
+        main_menu
+      when 6
         puts "Good-bye!"
         # #8
         exit(0)
@@ -57,11 +62,34 @@ require_relative '../models/address_book'
     puts entry.to_s
   # #15
     entry_submenu(entry)
-end
+ end
 
-system "clear"
-puts "End of entries"
+ system "clear"
+ puts "End of entries"
   end
+
+  def view_specific_entry
+    system "clear"
+    puts "Which entry number do you want to view, or enter 00 to return to the main menu."
+
+    print "Entry number: "
+
+    entry_number = gets.chomp.to_i
+
+    if entry_number == 00
+      system "clear"
+      main_menu
+
+    elsif address_book.entries.include?(address_book.entries[entry_number-1])
+    system "clear"
+    puts address_book.entries[entry_number-1].to_s
+
+  else
+    system "clear"
+    puts "This address entry does not exist.  Please enter a valid number"
+    view_specific_entry
+ end
+ end
 
   def create_entry
     system "clear"
