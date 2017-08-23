@@ -69,3 +69,17 @@ class AddressBook
      return nil
   end
 end
+
+def interative_search(name)
+    start = 0
+    finish = entries.length
+    
+    while start < finish
+        if start == name
+            return entries[start]
+        else start += 1
+        end
+    end
+    
+    return nil
+end
