@@ -1,0 +1,1 @@
+Address Bloc was my first Bloc project using Ruby on Rails.  It is an address book that allows users to add and remove contact information to keep track of their contacts.  In its current form it has only been used in the command line.
